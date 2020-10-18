@@ -25,6 +25,4 @@ require("./app/routes/subCategory.routes")(app);
 require("./app/routes/products.routes")(app);
 require("./app/routes/insight.routes")(app);
 // set port, listen for requests
-app.listen || 5000, () => {
-  console.log("Server is running on port 3001.");
-}
+app.listen(process.env.PORT || 5000);
