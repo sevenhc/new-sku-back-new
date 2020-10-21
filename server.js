@@ -8,6 +8,7 @@ var corsOptions = {
 };
 global.__basedir = __dirname;
 app.use(cors(corsOptions));
+var port = process.env.PORT || 8080;
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -26,6 +27,8 @@ require("./app/routes/products.routes")(app);
 require("./app/routes/insight.routes")(app);
 require("./app/routes/client.routes")(app);
 // set port, listen for requests
-app.listen(3000, () => {
-  console.log("Server is running on port 3000.");
-});
+app.listen(port,function() {
+  console.log("app running on port 8080"); });
+// app.listen(3000, () => {
+//   console.log("Server is running on port 3000.");
+// });
