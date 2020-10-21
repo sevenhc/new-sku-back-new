@@ -79,4 +79,20 @@ Client.delete = (newCategory, result) => {
     result(null, { id: res.insertId, ...newCategory });
   });
 };
+
+Client.updateSubscription = (newClient, result) => {
+  sql.query("CALL UpdateSubscription(?)", [newClient.ClientID], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("Updated  newClient subscription: ", {
+      id: res.insertId,
+      ...newClient,
+    });
+    result(null, { id: res.insertId, ...newClient });
+  });
+};
 module.exports = Client;

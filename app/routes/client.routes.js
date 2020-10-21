@@ -5,6 +5,8 @@ module.exports = (app) => {
   // app.post("/category/add", category.create);
   app.post("/client/addNew", client.create);
 
+  app.put("/client/update/subscription", client.updateSubscription);
+
   // Retrieve all Customers
   app.get("/client/getAll", client.getAll);
 
@@ -12,7 +14,7 @@ module.exports = (app) => {
   //   app.get("/customers/:customerId", customers.findOne);
 
   //   // Update a Customer with customerId
-  app.put("/category/update", client.updateNew);
+  app.put("/category/update", client.update);
 
   //   // Delete a Customer with customerId
   app.delete("/category/delete", client.delete);

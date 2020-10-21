@@ -27,35 +27,6 @@ exports.create = (req, res) => {
     else res.send(data);
   });
 };
-exports.updateNew = async (req, res) => {
-  try {
-    await uploadFile(req, res);
-
-    if (req.file == undefined) {
-      return res.status(400).send({ message: "Please upload a file!" });
-    }
-    const category = new Category({
-      CategoryID: req.body.CategoryID,
-      CategoryName: req.body.CategoryName,
-      ThumbnailImage: req.file.originalname,
-      UserID: req.body.UserID,
-    });
-    Category.update(category, (err, data) => {
-      if (err)
-        res.status(500).send({
-          message:
-            err.message ||
-            "Some error occurred while creating the SubCustomer.",
-        });
-      else res.send(data);
-    });
-    console.log(req.body.CategoryName);
-  } catch (err) {
-    res.status(500).send({
-      message: `Could not upload the file: ${req.file.originalname}. ${err}`,
-    });
-  }
-};
 
 exports.update = (req, res) => {
   console.log("update");
@@ -66,14 +37,14 @@ exports.update = (req, res) => {
     });
   }
 
-  const category = new Category({
-    CategoryID: req.body.CategoryID,
-    CategoryName: req.body.CategoryName,
-    ThumbnailImage: req.body.ThumbnailImage,
-    UserID: req.body.UserID,
+  const category = new Client({
+    ClientName: req.body.ClientName,
+    Company: req.body.Company,
+    Email: req.body.Email,
+    Mobile: req.body.Mobile,
   });
   console.log("hello", category);
-  Category.update(category, (err, data) => {
+  Client.update(category, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -107,6 +78,27 @@ exports.delete = (req, res) => {
   });
 
   Category.delete(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+exports.updateSubscription = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const client = new Client({
+    ClientID: req.body.ClientID,
+  });
+
+  Client.updateSubscription(client, (err, data) => {
     if (err)
       res.status(500).send({
         message:
