@@ -8,14 +8,16 @@ module.exports = (app) => {
   // Retrieve all Customers
   app.get("/product/getAll/:SubCategoryID", product.getAllProductsByIds);
 
+  app.get("/product/getById/:ProductID", product.getProductByID);
+
   //   // Retrieve a single Customer with customerId
   //   app.get("/customers/:customerId", customers.findOne);
 
   //   // Update a Customer with customerId
-  // app.put("/category/update/:categoryID", product.update);
+  app.put("/product/update", product.updateNew);
 
   //   // Delete a Customer with customerId
-  // app.delete("/category/delete/:categoryID", product.delete);
+  app.delete("/product/delete/:ProductID", product.delete);
 
   //   // Create a new Customer
   //   app.delete("/customers", customers.deleteAll);

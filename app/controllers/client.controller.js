@@ -29,26 +29,25 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  console.log("update");
   // Validate request
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
   }
-
-  const category = new Client({
+  const client = new Client({
+    ClientID: req.body.ClientID,
     ClientName: req.body.ClientName,
     Company: req.body.Company,
     Email: req.body.Email,
     Mobile: req.body.Mobile,
   });
-  console.log("hello", category);
-  Client.update(category, (err, data) => {
+
+  Client.update(client, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the SubCustomer.",
+          err.message || "Some error occurred while creating the Customer.",
       });
     else res.send(data);
   });
@@ -65,19 +64,18 @@ exports.getAll = (req, res) => {
   });
 };
 
-exports.delete = (req, res) => {
+exports.updateSubscription = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
   }
-
-  const category = new Category({
-    CategoryID: req.body.categoryID,
+  const client = new Client({
+    ClientID: req.body.ClientID,
   });
 
-  Category.delete(category, (err, data) => {
+  Client.updateSubscription(client, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -86,19 +84,38 @@ exports.delete = (req, res) => {
     else res.send(data);
   });
 };
-exports.updateSubscription = (req, res) => {
+exports.logIn = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
   }
-
   const client = new Client({
-    ClientID: req.body.ClientID,
+    Email: req.body.Email,
+    ClientPassword: req.body.ClientPassword,
   });
 
-  Client.updateSubscription(client, (err, data) => {
+  Client.logIn(client, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+exports.delete = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+  const client = new Client({
+    ClientID: req.params.ClientID,
+  });
+  Client.delete(client, (err, data) => {
     if (err)
       res.status(500).send({
         message:

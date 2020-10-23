@@ -4,6 +4,7 @@ const SubCategory = function (category) {
   this.CategoryID = category.CategoryID;
   this.SubCategoryID = category.SubCategoryID;
   this.CategoryName = category.CategoryName;
+  this.SubCategoryName = category.SubCategoryName;
   this.ThumbnailImage = category.ThumbnailImage;
   this.UserID = category.UserID;
 };
@@ -94,6 +95,22 @@ SubCategory.delete = (newCategory, result) => {
 
       console.log("Delete  Category: ", { id: res.insertId, ...newCategory });
       result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
+SubCategory.getSubById = (newCategory, result) => {
+  sql.query(
+    "CALL GetSubCategoryByID(?)",
+    [newCategory.SubCategoryID],
+    (err, res) => {
+      if (err) {
+        console.log("error.Model: ", err);
+        result(null, err);
+        return;
+      }
+      // console.log(query);
+      console.log("SubCategories: ", res);
+      result(null, res[0]);
     }
   );
 };

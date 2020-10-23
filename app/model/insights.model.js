@@ -77,4 +77,16 @@ Insights.delete = (InsightID, result) => {
     result(null, { id: res.insertId, ...InsightID });
   });
 };
+Insights.getInsById = (newInsights, result) => {
+  sql.query("CALL GetInsightByID(?)", [newInsights.InsightID], (err, res) => {
+    if (err) {
+      console.log("error.Model: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log(query);
+    console.log("GetInsightByID: ", res);
+    result(null, res[0]);
+  });
+};
 module.exports = Insights;

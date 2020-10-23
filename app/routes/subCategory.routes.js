@@ -16,6 +16,11 @@ module.exports = (app) => {
   //   // Delete a Customer with customerId
   app.delete("/subCategory/delete/:SubCategoryID", subCategory.delete);
 
+  app.get(
+    "/subCategory/GetSubCategoryByID/:SubCategoryID",
+    subCategory.getSubById
+  );
+
   //   // Create a new Customer
   //   app.delete("/customers", customers.deleteAll);
 };

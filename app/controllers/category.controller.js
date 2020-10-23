@@ -108,10 +108,32 @@ exports.delete = (req, res) => {
   }
 
   const category = new Category({
-    CategoryID: req.body.categoryID,
+    CategoryID: req.params.categoryID,
   });
 
   Category.delete(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+
+exports.getCatById = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const category = new Category({
+    CategoryID: req.params.CategoryID,
+  });
+
+  Category.getCatById(category, (err, data) => {
     if (err)
       res.status(500).send({
         message:

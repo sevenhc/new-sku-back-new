@@ -15,7 +15,9 @@ module.exports = (app) => {
   app.put("/insight/update", insight.updateNew);
 
   //   // Delete a Customer with customerId
-  app.delete("/insight/delete", insight.delete);
+  app.delete("/insight/delete/:InsightID", insight.delete);
+
+  app.get("/insight/getInsById/:InsightID", insight.getInsById);
 
   //   // Create a new Customer
   //   app.delete("/customers", customers.deleteAll);

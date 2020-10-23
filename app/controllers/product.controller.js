@@ -2,27 +2,6 @@ const Product = require("../model/product.model");
 const uploadFile = require("../middleware/upload");
 const upload = require("../middleware/uploadArray");
 
-exports.getAllSubCategory = (req, res) => {
-  Product.getAllSubCategory(req.params.CategoryID, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving customers.",
-      });
-    else res.send(data[0]);
-  });
-};
-exports.getSubCategoryByID = (req, res) => {
-  Product.getSubCategoryByID(req.params.SubCategoryID, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving customers.",
-      });
-    else res.send(data[0]);
-  });
-};
-
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -81,22 +60,15 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-  }
-
   const category = new Product({
-    SubCategoryID: req.params.SubCategoryID,
+    ProductID: req.params.ProductID,
   });
 
   Product.delete(category, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the SubCustomer.",
+          err.message || "Some error occurred while delete the ProductID.",
       });
     else res.send(data);
   });
@@ -124,6 +96,27 @@ exports.getAllProductsByIds = (req, res) => {
     else res.send(data);
   });
 };
+exports.getProductByID = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const category = new Product({
+    ProductID: req.params.ProductID,
+  });
+
+  Product.getProductByID(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
 
 exports.addNew = async (req, res) => {
   try {
@@ -139,7 +132,7 @@ exports.addNew = async (req, res) => {
       ProductName: req.body.ProductName,
       Ingredients: req.body.Ingredients,
       SubCategoryID: req.body.SubCategoryID,
-      // Image: req.files.imageArray[0].filename,     
+      // Image: req.files.imageArray[0].filename,
       Image: req.files.imageArray.toString(),
       ProductYear: 2020,
       ProductMonth: req.body.ProductMonth,
@@ -149,6 +142,45 @@ exports.addNew = async (req, res) => {
       UserID: req.body.UserID,
     });
     Product.create(category, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message ||
+            "Some error occurred while creating the SubCustomer.",
+        });
+      else res.send(data);
+    });
+    console.log(req.body.CategoryName);
+  } catch (err) {
+    res.status(500).send({
+      message: `Could not upload the file: ${err}`,
+    });
+  }
+};
+exports.updateNew = async (req, res) => {
+  try {
+    await upload(req, res);
+    // await uploadFile(req, res);
+
+    console.log(req.files);
+
+    if (req.files.length <= 0) {
+      return res.send(`You must select at least 1 file.`);
+    }
+    const category = new Product({
+      ProductID: req.body.ProductID,
+      ProductName: req.body.ProductName,
+      Ingredients: req.body.Ingredients,
+      SubCategoryID: req.body.SubCategoryID,
+      Image: req.files.imageArray.toString(),
+      ProductYear: 2020,
+      ProductMonth: req.body.ProductMonth,
+      SuperMarket: req.body.SuperMarket,
+      NutritionalTable: req.files.Nutritional[0].filename,
+      ThumbnailImage: req.files.main[0].filename,
+      UserID: req.body.UserID,
+    });
+    Product.updateNew(category, (err, data) => {
       if (err)
         res.status(500).send({
           message:

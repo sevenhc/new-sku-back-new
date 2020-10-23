@@ -70,4 +70,16 @@ Category.delete = (newCategory, result) => {
     result(null, { id: res.insertId, ...newCategory });
   });
 };
+Category.getCatById = (newCategory, result) => {
+  sql.query("CALL GetCategoryByID(?)", [newCategory.CategoryID], (err, res) => {
+    if (err) {
+      console.log("error.Model: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log(query);
+    console.log("SubCategories: ", res);
+    result(null, res[0]);
+  });
+};
 module.exports = Category;

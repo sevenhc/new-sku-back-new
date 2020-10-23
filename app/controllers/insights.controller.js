@@ -81,9 +81,31 @@ exports.delete = (req, res) => {
     });
   }
 
-  const InsightID = req.body.InsightID;
+  const InsightID = req.params.InsightID;
   Insights.delete(InsightID, (err, data) => {
     console.log(InsightID);
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+
+exports.getInsById = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const insights = new Insights({
+    InsightID: req.params.InsightID,
+  });
+
+  Insights.getInsById(insights, (err, data) => {
     if (err)
       res.status(500).send({
         message:
