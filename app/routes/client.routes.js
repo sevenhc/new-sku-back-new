@@ -15,8 +15,10 @@ module.exports = (app) => {
   //   // Retrieve a single Customer with customerId
   //   app.get("/customers/:customerId", customers.findOne);
 
-  //   // Update a Customer with customerId
+  //   // Update a Customer with customerIds
   app.put("/client/update", client.update);
+
+  app.put("/client/resetPassword/:email", client.updatePassword);
 
   //   // Delete a Customer with customerId
   app.delete("/client/delete/:ClientID", client.delete);

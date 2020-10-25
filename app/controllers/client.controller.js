@@ -52,6 +52,30 @@ exports.update = (req, res) => {
     else res.send(data);
   });
 };
+exports.updatePassword = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+  var emailNew = req.params.email;
+  console.log("reversed-->", Buffer.from(emailNew, "base64").toString());
+  var emailAddress = Buffer.from(emailNew, "base64").toString();
+  const client = new Client({
+    Email: emailAddress,
+    ClientPassword: req.body.ClientPassword,
+  });
+
+  Client.updatePassword(client, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Customer.",
+      });
+    else res.send(data);
+  });
+};
 
 exports.getAll = (req, res) => {
   Client.getAll((err, data) => {

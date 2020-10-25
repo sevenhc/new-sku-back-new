@@ -68,6 +68,22 @@ Client.update = (newClient, result) => {
     }
   );
 };
+Client.updatePassword = (newClient, result) => {
+  sql.query(
+    "CALL UpdatePassword(?,?)",
+    [newClient.Email, newClient.ClientPassword],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("created Client: ", { res });
+      result(null, { res });
+    }
+  );
+};
 
 Client.delete = (newClient, result) => {
   console.log("delete client", newClient.ClientID);
