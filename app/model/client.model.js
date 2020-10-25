@@ -112,7 +112,9 @@ Client.logIn = (newClient, result) => {
         result(null, err);
         return;
       }
-
+      if (res[0].Message == "Username or Password invalied.") {
+        console.log("error-pass");
+      }
       console.log("Categorys: ", res);
       result(null, res[0]);
     }

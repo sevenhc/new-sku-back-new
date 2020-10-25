@@ -128,12 +128,17 @@ exports.addNew = async (req, res) => {
     if (req.files.length <= 0) {
       return res.send(`You must select at least 1 file.`);
     }
+    var a = [];
+    for (var i = 0, j = req.files.imageArray.length; i < j; i++) {
+      a.push(req.files.imageArray[i].filename);
+    }
+    console.log("asdad", a);
     const category = new Product({
       ProductName: req.body.ProductName,
       Ingredients: req.body.Ingredients,
       SubCategoryID: req.body.SubCategoryID,
       // Image: req.files.imageArray[0].filename,
-      Image: req.files.imageArray.toString(),
+      Image: JSON.stringify(a),
       ProductYear: 2020,
       ProductMonth: req.body.ProductMonth,
       SuperMarket: req.body.SuperMarket,

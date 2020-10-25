@@ -17,7 +17,7 @@ LibraryItems.getAll = (newLibraryItems, result) => {
       }
 
       console.log("Library Items: ", res);
-      result(null, res);
+      result(null, res[0]);
     }
   );
 };

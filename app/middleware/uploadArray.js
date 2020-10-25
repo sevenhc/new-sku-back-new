@@ -35,4 +35,3 @@ var uploadFiles = multer({ storage: storage }).fields([
 ]);
 var uploadFilesMiddleware = util.promisify(uploadFiles);
 module.exports = uploadFilesMiddleware;
- 
