@@ -5,6 +5,7 @@ path = require("path");
 const app = express();
 var corsOptions = {
   // origin: "http://localhost:3200",
+  origin: "*",
 };
 global.__basedir = __dirname;
 app.use(cors(corsOptions));
