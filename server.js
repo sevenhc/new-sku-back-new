@@ -5,7 +5,7 @@ path = require("path");
 const app = express();
 
 global.__basedir = __dirname;
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
