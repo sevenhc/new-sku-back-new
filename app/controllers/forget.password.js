@@ -9,7 +9,7 @@ exports.mail = (req, res) => {
     "reversed-->",
     Buffer.from(newDecryptedMail, "base64").toString()
   );
-  const link = "http://localhost:8080/client/resetpassword/" + newDecryptedMail;
+  const link = "http://localhost:8081/client/resetpassword/" + newDecryptedMail;
   var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com", // hostname
     secureConnection: true, // use SSL
