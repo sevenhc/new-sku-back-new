@@ -210,25 +210,13 @@ exports.addNew = async (req, res) => {
 };
 exports.updateNew = async (req, res) => {
   try {
-    await upload(req, res);
-    // await uploadFile(req, res);
-
-    console.log(req.files);
-
-    if (req.files.length <= 0) {
-      return res.send(`You must select at least 1 file.`);
-    }
     const category = new Product({
       ProductID: req.body.ProductID,
       ProductName: req.body.ProductName,
       Ingredients: req.body.Ingredients,
-      SubCategoryID: req.body.SubCategoryID,
-      Image: req.files.imageArray.toString(),
       ProductYear: 2020,
       ProductMonth: req.body.ProductMonth,
       SuperMarket: req.body.SuperMarket,
-      NutritionalTable: req.files.Nutritional[0].filename,
-      ThumbnailImage: req.files.main[0].filename,
       UserID: req.body.UserID,
     });
     Product.updateNew(category, (err, data) => {

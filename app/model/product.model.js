@@ -71,18 +71,14 @@ Product.create = (newSubCategory, result) => {
 };
 Product.updateNew = (newSubCategory, result) => {
   sql.query(
-    "CALL EditProduct(?,?,?,?,?,?,?,?,?,?,?)",
+    "CALL EditProduct(?,?,?,?,?,?,?)",
     [
       newSubCategory.ProductID,
       newSubCategory.ProductName,
       newSubCategory.Ingredients,
-      newSubCategory.SubCategoryID,
-      newSubCategory.ThumbnailImage,
-      newSubCategory.Image,
       newSubCategory.ProductYear,
       newSubCategory.ProductMonth,
       newSubCategory.SuperMarket,
-      newSubCategory.NutritionalTable,
       newSubCategory.UserID,
     ],
     (err, res) => {
