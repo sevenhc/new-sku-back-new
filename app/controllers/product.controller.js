@@ -209,6 +209,7 @@ exports.addNew = async (req, res) => {
   }
 };
 exports.updateNew = async (req, res) => {
+  
   try {
     const category = new Product({
       ProductID: req.body.ProductID,
