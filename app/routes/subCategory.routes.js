@@ -13,8 +13,12 @@ module.exports = (app) => {
   //   // Update a Customer with customerId
   app.put("/subCategory/update", subCategory.updateNew);
 
+  app.put("/subCategory/title/update", subCategory.updateTitle);
+
   //   // Delete a Customer with customerId
   app.delete("/subCategory/delete/:SubCategoryID", subCategory.delete);
+
+  app.delete("/subCategory/delete/image/:SubCategoryID", subCategory.deleteImage);
 
   app.get(
     "/subCategory/GetSubCategoryByID/:SubCategoryID",

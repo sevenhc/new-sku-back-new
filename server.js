@@ -26,6 +26,7 @@ require("./app/routes/client.routes")(app);
 require("./app/routes/library.routes")(app);
 require("./app/routes/libraryItems.routes")(app);
 require("./app/routes/forgetPassword")(app);
+require("./app/routes/user.routes")(app);
 // set port, listen for requests
 // app.listen(3000, () => {
 //   console.log("Server is running on port 3000.");

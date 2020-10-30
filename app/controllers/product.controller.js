@@ -73,6 +73,52 @@ exports.delete = (req, res) => {
     else res.send(data);
   });
 };
+exports.deleteMainImage = (req, res) => {
+  const category = new Product({
+    ProductID: req.params.ProductID,
+  });
+
+  Product.deleteMainImage(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while delete the ProductID.",
+      });
+    else res.send(data);
+  });
+};
+exports.DeleteProductNutritionTable = (req, res) => {
+  const category = new Product({
+    ProductID: req.params.ProductID,
+  });
+
+  Product.DeleteProductNutritionTable(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while delete the ProductID.",
+      });
+    else res.send(data);
+  });
+};
+exports.DeleteProductImages = (req, res) => {
+  console.log("body", req.body);
+  var newImageArray = JSON.stringify(req.body.Array);
+  console.log("new array", newImageArray);
+  const category = new Product({
+    ProductID: req.body.Id,
+    Image: newImageArray,
+  });
+
+  Product.DeleteProductImages(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while delete the ProductID.",
+      });
+    else res.send(data);
+  });
+};
 
 exports.getAllProductsByIds = (req, res) => {
   // Validate request
@@ -186,6 +232,36 @@ exports.updateNew = async (req, res) => {
       UserID: req.body.UserID,
     });
     Product.updateNew(category, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message ||
+            "Some error occurred while creating the SubCustomer.",
+        });
+      else res.send(data);
+    });
+    console.log(req.body.CategoryName);
+  } catch (err) {
+    res.status(500).send({
+      message: `Could not upload the file: ${err}`,
+    });
+  }
+};
+exports.updateProductThumbnail = async (req, res) => {
+  try {
+    await upload(req, res);
+    // await uploadFile(req, res);
+
+    console.log(req.files);
+
+    if (req.files.length <= 0) {
+      return res.send(`You must select at least 1 file.`);
+    }
+    const category = new Product({
+      ProductID: req.body.ProductID,
+      ThumbnailImage: req.files.main[0].filename,
+    });
+    Product.updateProductThumbnail(category, (err, data) => {
       if (err)
         res.status(500).send({
           message:

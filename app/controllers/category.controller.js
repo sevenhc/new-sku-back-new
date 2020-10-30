@@ -61,32 +61,33 @@ exports.updateNew = async (req, res) => {
     });
   }
 };
-
-exports.update = (req, res) => {
-  console.log("update");
-  // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!",
+exports.updateTitle = async (req, res) => {
+  try {
+    console.log("title", req.body.CategoryID);
+    if (req.body.CategoryID == undefined) {
+      return res.status(400).send({ message: "Please add CategoryID!" });
+    }
+    const category = new Category({
+      CategoryID: req.body.CategoryID,
+      CategoryName: req.body.CategoryName,
+    });
+    Category.updateTitle(category, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message ||
+            "Some error occurred while creating the SubCustomer.",
+        });
+      else res.send(data);
+    });
+    console.log(req.body.CategoryName);
+  } catch (err) {
+    res.status(500).send({
+      message: `Could not upload the file: ${req.file.originalname}. ${err}`,
     });
   }
-
-  const category = new Category({
-    CategoryID: req.body.CategoryID,
-    CategoryName: req.body.CategoryName,
-    ThumbnailImage: req.body.ThumbnailImage,
-    UserID: req.body.UserID,
-  });
-  console.log("hello", category);
-  Category.update(category, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the SubCustomer.",
-      });
-    else res.send(data);
-  });
 };
+
 
 exports.getAllCategory = (req, res) => {
   Category.getAllCategory((err, data) => {
@@ -112,6 +113,27 @@ exports.delete = (req, res) => {
   });
 
   Category.delete(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+exports.deleteImage = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const category = new Category({
+    CategoryID: req.params.categoryID,
+  });
+
+  Category.deleteImage(category, (err, data) => {
     if (err)
       res.status(500).send({
         message:

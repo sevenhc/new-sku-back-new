@@ -58,8 +58,37 @@ Category.update = (newCategory, result) => {
     }
   );
 };
+Category.updateTitle = (newCategory, result) => {
+  console.log("model", newCategory);
+  sql.query(
+    "CALL UpdateCategoryName(?,?)",
+    [newCategory.CategoryName, newCategory.CategoryID],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Updated  Category: ", { id: res.insertId, ...newCategory });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
 Category.delete = (newCategory, result) => {
   sql.query("CALL DeleteCategory(?)", [newCategory.CategoryID], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("Delete  Category: ", { id: res.insertId, ...newCategory });
+    result(null, { id: res.insertId, ...newCategory });
+  });
+};
+Category.deleteImage = (newCategory, result) => {
+  sql.query("CALL DeleteCategoryImage(?)", [newCategory.CategoryID], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

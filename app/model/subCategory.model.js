@@ -82,9 +82,45 @@ SubCategory.update = (newCategory, result) => {
     }
   );
 };
+SubCategory.updateTitle = (newCategory, result) => {
+  sql.query(
+    "CALL UpdateSubCategoryName(?,?)",
+    [newCategory.CategoryName, newCategory.SubCategoryID],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Updated  subCategory: ", {
+        id: res.insertId,
+        ...newCategory,
+      });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
 SubCategory.delete = (newCategory, result) => {
   sql.query(
     "CALL DeleteSubCategory(?)",
+    [newCategory.SubCategoryID],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Delete  Category: ", { id: res.insertId, ...newCategory });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
+SubCategory.deleteImage = (newCategory, result) => {
+  console.log("mofl",newCategory.SubCategoryID)
+  sql.query(
+    "CALL DeleteSubCategoryImage(?)",
     [newCategory.SubCategoryID],
     (err, res) => {
       if (err) {

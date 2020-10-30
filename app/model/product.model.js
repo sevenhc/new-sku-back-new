@@ -112,5 +112,53 @@ Product.delete = (newCategory, result) => {
     result(null, { id: res.insertId, ...newCategory });
   });
 };
+Product.deleteMainImage = (newCategory, result) => {
+  sql.query(
+    "CALL DeleteProductThumnail(?)",
+    [newCategory.ProductID],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Delete  Product: ", { id: res.insertId, ...newCategory });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
+Product.DeleteProductNutritionTable = (newCategory, result) => {
+  sql.query(
+    "CALL DeleteProductNutritionTable(?)",
+    [newCategory.ProductID],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Delete  Product: ", { id: res.insertId, ...newCategory });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
+Product.DeleteProductImages = (newCategory, result) => {
+  sql.query(
+    "CALL DeleteProductImages(?,?)",
+    [newCategory.ProductID,newCategory.Image],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("Delete  Product: ", { id: res.insertId, ...newCategory });
+      result(null, { id: res.insertId, ...newCategory });
+    }
+  );
+};
 
 module.exports = Product;

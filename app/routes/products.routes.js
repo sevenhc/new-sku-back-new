@@ -18,6 +18,12 @@ module.exports = (app) => {
 
   //   // Delete a Customer with customerId
   app.delete("/product/delete/:ProductID", product.delete);
+  app.delete("/product/deleteMainImage/:ProductID", product.deleteMainImage);
+  app.delete(
+    "/product/DeleteProductNutritionTable/:ProductID",
+    product.DeleteProductNutritionTable
+  );
+  app.post("/product/DeleteProductImages", product.DeleteProductImages);
 
   //   // Create a new Customer
   //   app.delete("/customers", customers.deleteAll);

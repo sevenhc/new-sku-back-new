@@ -32,11 +32,9 @@ exports.update = (req, res) => {
     });
   }
   const client = new Client({
-    ClientID: req.body.ClientID,
-    ClientName: req.body.ClientName,
-    Company: req.body.Company,
+    UserName: req.body.UserName,
     Email: req.body.Email,
-    Mobile: req.body.Mobile,
+    UserID: req.body.UserID,
   });
 
   Client.update(client, (err, data) => {
@@ -113,7 +111,7 @@ exports.logIn = (req, res) => {
   }
   const client = new Client({
     Email: req.body.Email,
-    ClientPassword: req.body.ClientPassword,
+    Password: req.body.Password,
   });
 
   Client.logIn(client, (err, data) => {
@@ -133,7 +131,7 @@ exports.delete = (req, res) => {
     });
   }
   const client = new Client({
-    ClientID: req.params.ClientID,
+    UserID: req.params.UserID,
   });
   Client.delete(client, (err, data) => {
     if (err)

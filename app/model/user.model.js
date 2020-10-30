@@ -4,9 +4,10 @@ const Client = function (client) {
   this.UserName = client.UserName;
   this.Email = client.Email;
   this.Password = client.Password;
+  this.UserID = client.UserID;
 };
 Client.getAll = (result) => {
-  sql.query("CALL GetAllClients()", (err, res) => {
+  sql.query("CALL GetAllUsers()", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -37,14 +38,8 @@ Client.create = (newClient, result) => {
 
 Client.update = (newClient, result) => {
   sql.query(
-    "CALL EditClient(?,?,?,?,?)",
-    [
-      newClient.ClientID,
-      newClient.ClientName,
-      newClient.Company,
-      newClient.Email,
-      newClient.Mobile,
-    ],
+    "CALL EditUser(?,?,?)",
+    [newClient.UserID, newClient.UserName, newClient.Email],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -76,7 +71,7 @@ Client.updatePassword = (newClient, result) => {
 
 Client.delete = (newClient, result) => {
   console.log("delete client", newClient.ClientID);
-  sql.query("CALL DeleteClient(?)", [newClient.ClientID], (err, res) => {
+  sql.query("CALL DeleteUser(?)", [newClient.UserID], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -88,29 +83,12 @@ Client.delete = (newClient, result) => {
   });
 };
 
-Client.updateSubscription = (newClient, result) => {
-  console.log("isTrialUP iD", newClient.ClientID);
-
-  sql.query("CALL UpdateSubscription(?)", [newClient.ClientID], (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
-
-    console.log("Updated  newClient subscription: ", {
-      id: res.insertId,
-      ...newClient,
-    });
-    result(null, { id: res.insertId, ...newClient });
-  });
-};
 Client.logIn = (newClient, result) => {
   console.log("isTrialUP iD", newClient.ClientID);
 
   sql.query(
-    "CALL ClientLogin(?,?)",
-    [newClient.Email, newClient.ClientPassword],
+    "CALL UserLogin(?,?)",
+    [newClient.Email, newClient.Password],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -125,22 +103,4 @@ Client.logIn = (newClient, result) => {
     }
   );
 };
-// Client.logIn = (newClient, result) => {
-//   console.log("isTrialUP iD", newClient.ClientID);
-
-//   sql.query(
-//     "CALL ClientLogin(?,?)",
-//     [newClient.Email, newClient.ClientPassword],
-//     (err, res) => {
-//       if (err) {
-//         console.log("error: ", err);
-//         result(null, err);
-//         return;
-//       }
-
-//       console.log("Categorys: ", res);
-//       result(null, res[0]);
-//     }
-//   );
-// };
 module.exports = Client;
