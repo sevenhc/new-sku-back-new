@@ -311,9 +311,7 @@ exports.UpdateProductNutritionTable = async (req, res) => {
 exports.UpdateProductImages = async (req, res) => {
   try {
     await upload(req, res);
-    // await uploadFile(req, res);
-
-    console.log(req.files);
+    console.log(req.body);
 
     if (req.files.length <= 0) {
       return res.send(`You must select at least 1 file.`);
@@ -322,12 +320,16 @@ exports.UpdateProductImages = async (req, res) => {
     for (var i = 0, j = req.files.imageArray.length; i < j; i++) {
       a.push(req.files.imageArray[i].filename);
     }
+    var newArray = req.body.newArray;
+    a.push(newArray);
+
+    console.log("new", a);
+    console.log("old", newArray);
     const category = new Product({
       ProductID: req.body.ProductID,
       Image: JSON.stringify(a),
     });
 
-    console.log("asdasd", a);
     Product.UpdateProductImages(category, (err, data) => {
       if (err)
         res.status(500).send({
