@@ -122,7 +122,7 @@ Product.updateProductThumbnail = (newSubCategory, result) => {
 Product.UpdateProductNutritionTable = (newSubCategory, result) => {
   sql.query(
     "CALL UpdateProductNutritionTable(?,?)",
-    [newSubCategory.ProductID, newSubCategory.NutritionTable],
+    [newSubCategory.ProductID, newSubCategory.NutritionalTable],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
