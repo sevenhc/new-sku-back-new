@@ -119,6 +119,25 @@ Product.updateProductThumbnail = (newSubCategory, result) => {
     }
   );
 };
+Product.UpdateProductImages = (newSubCategory, result) => {
+  sql.query(
+    "CALL UpdateProductImages(?,?)",
+    [newSubCategory.ProductID, newSubCategory.Image],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("created Category: ", {
+        id: res.insertId,
+        ...newSubCategory,
+      });
+      result(null, { id: res.insertId, ...newSubCategory });
+    }
+  );
+};
 Product.UpdateProductNutritionTable = (newSubCategory, result) => {
   sql.query(
     "CALL UpdateProductNutritionTable(?,?)",

@@ -308,6 +308,42 @@ exports.UpdateProductNutritionTable = async (req, res) => {
     });
   }
 };
+exports.UpdateProductImages = async (req, res) => {
+  try {
+    await upload(req, res);
+    // await uploadFile(req, res);
+
+    console.log(req.files);
+
+    if (req.files.length <= 0) {
+      return res.send(`You must select at least 1 file.`);
+    }
+    var a = [];
+    for (var i = 0, j = req.files.imageArray.length; i < j; i++) {
+      a.push(req.files.imageArray[i].filename);
+    }
+    const category = new Product({
+      ProductID: req.body.ProductID,
+      Image: JSON.stringify(a),
+    });
+
+    console.log("asdasd", a);
+    Product.UpdateProductImages(category, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message ||
+            "Some error occurred while creating the SubCustomer.",
+        });
+      else res.send(data);
+    });
+    console.log(req.body.CategoryName);
+  } catch (err) {
+    res.status(500).send({
+      message: `Could not upload the file: ${err}`,
+    });
+  }
+};
 exports.multipleUpload = async (req, res) => {
   try {
     await upload(req, res);
