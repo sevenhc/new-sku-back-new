@@ -100,6 +100,44 @@ Product.updateNew = (newSubCategory, result) => {
     }
   );
 };
+Product.updateProductThumbnail = (newSubCategory, result) => {
+  sql.query(
+    "CALL UpdateProductThumbnail(?,?)",
+    [newSubCategory.ProductID, newSubCategory.ThumbnailImage],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("created Category: ", {
+        id: res.insertId,
+        ...newSubCategory,
+      });
+      result(null, { id: res.insertId, ...newSubCategory });
+    }
+  );
+};
+Product.UpdateProductNutritionTable = (newSubCategory, result) => {
+  sql.query(
+    "CALL UpdateProductNutritionTable(?,?)",
+    [newSubCategory.ProductID, newSubCategory.NutritionTable],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      console.log("created Category: ", {
+        id: res.insertId,
+        ...newSubCategory,
+      });
+      result(null, { id: res.insertId, ...newSubCategory });
+    }
+  );
+};
 Product.delete = (newCategory, result) => {
   sql.query("CALL DeleteProducts(?)", [newCategory.ProductID], (err, res) => {
     if (err) {
@@ -147,7 +185,7 @@ Product.DeleteProductNutritionTable = (newCategory, result) => {
 Product.DeleteProductImages = (newCategory, result) => {
   sql.query(
     "CALL DeleteProductImages(?,?)",
-    [newCategory.ProductID,newCategory.Image],
+    [newCategory.ProductID, newCategory.Image],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

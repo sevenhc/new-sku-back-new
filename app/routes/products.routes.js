@@ -15,6 +15,8 @@ module.exports = (app) => {
 
   //   // Update a Customer with customerId
   app.put("/product/update", product.updateNew);
+  app.put("/product/UpdateProductThumbnail", product.updateProductThumbnail);
+  app.put("/product/UpdateProductNutritionTable", product.UpdateProductNutritionTable);
 
   //   // Delete a Customer with customerId
   app.delete("/product/delete/:ProductID", product.delete);
