@@ -2,7 +2,7 @@ module.exports = {
   HOST: "newskudb-do-user-8148570-0.b.db.ondigitalocean.com",
   PORT: "25060",
   USER: "doadmin",
-  PASSWORD: "e5nb5jiesfm7xnjl",
+  PASSWORD: "zol4i9t5uxpy49ek",
   DB: "NewSkuDatabase",
 };
 
