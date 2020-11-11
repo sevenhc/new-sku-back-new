@@ -4,6 +4,7 @@ const dbConfig = require("../config/db.confiig");
 // Create a connection to the database
 const connection = mysql.createPool({
   host: dbConfig.HOST,
+  port: dbConfig.PORT,
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
@@ -40,7 +41,6 @@ function handleDisconnect() {
       }
     });
   });
- 
 }
 
 module.exports = connection;
