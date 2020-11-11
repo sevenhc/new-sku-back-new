@@ -1,10 +1,10 @@
 module.exports = {
-  HOST: "us-cdbr-east-02.cleardb.com",
-  USER: "b75cf9bd67edd1",
-  PASSWORD: "10863cba",
-  DB: "heroku_f1e35368948d17d",
+  HOST: "newskudb-do-user-8148570-0.b.db.ondigitalocean.com",
+  PORT: "25060",
+  USER: "doadmin",
+  PASSWORD: "e5nb5jiesfm7xnjl",
+  DB: "NewSkuDatabase",
 };
-
 
 // module.exports = {
 //   HOST: "localhost",
