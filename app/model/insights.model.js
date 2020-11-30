@@ -89,8 +89,8 @@ Insights.getInsById = (newInsights, result) => {
     result(null, res[0]);
   });
 };
-Insights.GetLatesInsight = (newInsights, result) => {
-  sql.query("CALL GetLatesInsight()", [newInsights.InsightID], (err, res) => {
+Insights.GetLatesInsight = ( result) => {
+  sql.query("CALL GetLatesInsight()", [], (err, res) => {
     if (err) {
       console.log("error.Model: ", err);
       result(null, err);
