@@ -9,6 +9,7 @@ module.exports = (app) => {
   app.get("/product/getAll/:SubCategoryID", product.getAllProductsByIds);
 
   app.get("/product/getById/:ProductID", product.getProductByID);
+  app.get("/product/getLatest", product.getLatestProducts);
 
   //   // Retrieve a single Customer with customerId
   //   app.get("/customers/:customerId", customers.findOne);
@@ -16,7 +17,10 @@ module.exports = (app) => {
   //   // Update a Customer with customerId
   app.put("/product/update", product.updateNew);
   app.put("/product/UpdateProductThumbnail", product.updateProductThumbnail);
-  app.put("/product/UpdateProductNutritionTable", product.UpdateProductNutritionTable);
+  app.put(
+    "/product/UpdateProductNutritionTable",
+    product.UpdateProductNutritionTable
+  );
   app.put("/product/UpdateProductImages", product.UpdateProductImages);
 
   //   // Delete a Customer with customerId

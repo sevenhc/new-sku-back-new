@@ -3,6 +3,10 @@ const dbConfig = require("../config/db.confiig");
 
 // Create a connection to the database
 const connection = mysql.createPool({
+  connectionLimit: 1000,
+  connectTimeout: 60 * 60 * 1000,
+  acquireTimeout: 60 * 60 * 1000,
+  timeout: 60 * 60 * 1000,
   host: dbConfig.HOST,
   port: dbConfig.PORT,
   user: dbConfig.USER,

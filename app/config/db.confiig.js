@@ -1,4 +1,5 @@
 module.exports = {
+  connectionLimit: 1000,
   HOST: "newskudb-do-user-8148570-0.b.db.ondigitalocean.com",
   PORT: "25060",
   USER: "doadmin",
