@@ -163,6 +163,18 @@ exports.getProductByID = (req, res) => {
     else res.send(data);
   });
 };
+exports.getLatestProducts = (req, res) => {
+  // Validate request
+
+  Product.getLatestProducts((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
 
 exports.addNew = async (req, res) => {
   try {
@@ -209,7 +221,6 @@ exports.addNew = async (req, res) => {
   }
 };
 exports.updateNew = async (req, res) => {
-  
   try {
     const category = new Product({
       ProductID: req.body.ProductID,

@@ -38,6 +38,18 @@ Product.getProductByID = (category, result) => {
     result(null, res[0]);
   });
 };
+Product.getLatestProducts = (result) => {
+  sql.query("CALL GetLatesProducts()", (err, res) => {
+    if (err) {
+      console.log("error.Model: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log(query);
+    console.log("PRODUCT: ", res);
+    result(null, res[0]);
+  });
+};
 
 Product.create = (newSubCategory, result) => {
   sql.query(
