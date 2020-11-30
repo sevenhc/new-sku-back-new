@@ -163,9 +163,9 @@ exports.getProductByID = (req, res) => {
     else res.send(data);
   });
 };
-exports.getLatestProducts = (req, res) => {
-  // Validate request
 
+exports.getLatestProducts = (req, res) => {
+  console.log("😀__>");
   Product.getLatestProducts((err, data) => {
     if (err)
       res.status(500).send({

@@ -114,3 +114,22 @@ exports.getInsById = (req, res) => {
     else res.send(data);
   });
 };
+exports.GetLatesInsight = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+
+
+  Insights.GetLatesInsight( (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};

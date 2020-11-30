@@ -8,6 +8,8 @@ module.exports = (app) => {
   // Retrieve all Customers
   app.get("/insight/getAll", insight.getAll);
 
+  app.get("/insight/GetLatesInsight", insight.GetLatesInsight);
+
   //   // Retrieve a single Customer with customerId
   //   app.get("/customers/:customerId", customers.findOne);
 

@@ -89,4 +89,16 @@ Insights.getInsById = (newInsights, result) => {
     result(null, res[0]);
   });
 };
+Insights.GetLatesInsight = (newInsights, result) => {
+  sql.query("CALL GetLatesInsight()", [newInsights.InsightID], (err, res) => {
+    if (err) {
+      console.log("error.Model: ", err);
+      result(null, err);
+      return;
+    }
+    // console.log(query);
+    console.log("GetInsightByID: ", res);
+    result(null, res[0]);
+  });
+};
 module.exports = Insights;
