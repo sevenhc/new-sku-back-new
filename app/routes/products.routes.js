@@ -9,6 +9,7 @@ module.exports = (app) => {
   app.get("/product/getAll/:SubCategoryID", product.getAllProductsByIds);
 
   app.get("/product/getById/:ProductID", product.getProductByID);
+  app.get("/product/getProductByKeyWord/:ProductName", product.getProductByKeyWord);
   app.get("/product/getLatest", product.getLatestProducts);
 
   //   // Retrieve a single Customer with customerId
