@@ -221,7 +221,8 @@ exports.addNew = async (req, res) => {
       ProductYear: 2020,
       ProductMonth: req.body.ProductMonth,
       SuperMarket: req.body.SuperMarket,
-      NutritionalTable: req.files.Nutritional[0].filename,
+      NutritionalTable: req.body.NutritionalTable,
+      // NutritionalTable: req.files.Nutritional[0].filename,
       ThumbnailImage: req.files.main[0].filename,
       UserID: req.body.UserID,
     });
@@ -251,6 +252,7 @@ exports.updateNew = async (req, res) => {
       ProductMonth: req.body.ProductMonth,
       SuperMarket: req.body.SuperMarket,
       UserID: req.body.UserID,
+      NutritionalTable: req.body.NutritionalTable,
     });
     Product.updateNew(category, (err, data) => {
       if (err)

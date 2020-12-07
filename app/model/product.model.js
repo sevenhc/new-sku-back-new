@@ -39,16 +39,20 @@ Product.getProductByID = (category, result) => {
   });
 };
 Product.getProductByKeyWord = (category, result) => {
-  sql.query("CALL GetAllProductsByKeyword(?)", [category.ProductName], (err, res) => {
-    if (err) {
-      console.log("error.Model: ", err);
-      result(null, err);
-      return;
+  sql.query(
+    "CALL GetAllProductsByKeyword(?)",
+    [category.ProductName],
+    (err, res) => {
+      if (err) {
+        console.log("error.Model: ", err);
+        result(null, err);
+        return;
+      }
+      // console.log(query);
+      console.log("PRODUCT: ", res);
+      result(null, res[0]);
     }
-    // console.log(query);
-    console.log("PRODUCT: ", res);
-    result(null, res[0]);
-  });
+  );
 };
 Product.getLatestProducts = (result) => {
   console.log("model-->");
@@ -97,7 +101,7 @@ Product.create = (newSubCategory, result) => {
 };
 Product.updateNew = (newSubCategory, result) => {
   sql.query(
-    "CALL EditProduct(?,?,?,?,?,?,?)",
+    "CALL EditProduct(?,?,?,?,?,?,?,?)",
     [
       newSubCategory.ProductID,
       newSubCategory.ProductName,
@@ -106,6 +110,7 @@ Product.updateNew = (newSubCategory, result) => {
       newSubCategory.ProductMonth,
       newSubCategory.SuperMarket,
       newSubCategory.UserID,
+      newSubCategory.NutritionalTable,
     ],
     (err, res) => {
       if (err) {
