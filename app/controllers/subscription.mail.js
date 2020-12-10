@@ -1,15 +1,9 @@
 var nodemailer = require("nodemailer");
 exports.mail = (req, res) => {
-  const subject = "New-Sku Password Reset Request";
+  const subject = "New-Sku User Subscription Configuration Mail";
   const email = req.params.email;
-  const newDecryptedMail = Buffer.from(email).toString("base64");
+  const message = "Subscription successfully activated";
 
-  console.log("Enc-->", newDecryptedMail);
-  console.log(
-    "reversed-->",
-    Buffer.from(newDecryptedMail, "base64").toString()
-  );
-  const link = "https://new-sku-front.herokuapp.com/" + newDecryptedMail;
   var transporter = nodemailer.createTransport({
     host: "smtp.123-reg.co.uk", // hostname
     secureConnection: true, // use SSL
@@ -30,7 +24,7 @@ exports.mail = (req, res) => {
   // });
 
   var mailOptions = {
-    from: "sanotabluehaven123@gmail.com",
+    from: "info@newsku.co.uk",
     to: email,
     subject: subject,
     text: email,
@@ -43,10 +37,7 @@ exports.mail = (req, res) => {
           <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
         </head>
         <body>
-<p class="text-center">Please Update user password</p>
-<br/>
-        <div>You can change user password following link
-        <div>•link --> ${link}</div>
+        <div>Subscription successfully activated</div>
         </body>
       </html>`,
   };
@@ -61,7 +52,7 @@ exports.mail = (req, res) => {
       res.status(500).send({
         message:
           err.message ||
-          "Some error occurred while retrieving Exam_cancellation.",
+          "Some error occurred while retrieving email.",
       });
     });
 };
