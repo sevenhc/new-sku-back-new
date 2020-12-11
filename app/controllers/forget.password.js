@@ -5,11 +5,8 @@ exports.mail = (req, res) => {
   const newDecryptedMail = Buffer.from(email).toString("base64");
 
   console.log("Enc-->", newDecryptedMail);
-  console.log(
-    "reversed-->",
-    Buffer.from(newDecryptedMail, "base64").toString()
-  );
-  const link = "https://new-sku-front.herokuapp.com/" + newDecryptedMail;
+  console.log("reversed-->", Buffer.from(newDecryptedMail, "base64").toString());
+  const link = "http://134.209.29.191/" + newDecryptedMail;
   var transporter = nodemailer.createTransport({
     host: "smtp.123-reg.co.uk", // hostname
     secureConnection: true, // use SSL
@@ -59,9 +56,7 @@ exports.mail = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message ||
-          "Some error occurred while retrieving Exam_cancellation.",
+        message: err.message || "Some error occurred while retrieving Exam_cancellation.",
       });
     });
 };
