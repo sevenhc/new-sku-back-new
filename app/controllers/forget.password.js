@@ -30,7 +30,7 @@ exports.mail = (req, res) => {
   // });
 
   var mailOptions = {
-    from: "sanotabluehaven123@gmail.com",
+    from: "info@newsku.co.uk",
     to: email,
     subject: subject,
     text: email,
