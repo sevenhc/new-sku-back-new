@@ -88,7 +88,6 @@ exports.updateTitle = async (req, res) => {
   }
 };
 
-
 exports.getAllCategory = (req, res) => {
   Category.getAllCategory((err, data) => {
     if (err)
@@ -130,9 +129,10 @@ exports.deleteImage = (req, res) => {
   }
 
   const category = new Category({
-    CategoryID: req.params.categoryID,
+    CategoryID: req.body.categoryID,
+    catImage: req.body.file,
   });
-
+  console.log("😀", req.body.file);
   Category.deleteImage(category, (err, data) => {
     if (err)
       res.status(500).send({
@@ -140,6 +140,13 @@ exports.deleteImage = (req, res) => {
           err.message || "Some error occurred while creating the SubCustomer.",
       });
     else res.send(data);
+    console.log("😀😅", req.body.file);
+
+    fs.unlink(__basedir + "/uploads/" + req.body.file, function (err) {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log("File deleted!");
+    });
   });
 };
 

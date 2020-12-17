@@ -15,7 +15,7 @@ module.exports = (app) => {
   //   // Delete a Customer with customerId
   app.delete("/category/delete/:categoryID", category.delete);
 
-  app.delete("/category/delete/image/:categoryID", category.deleteImage);
+  app.post("/category/delete/image", category.deleteImage);
 
   app.get("/category/GetCategoryByID/:CategoryID", category.getCatById);
   //   // Create a new Customer
