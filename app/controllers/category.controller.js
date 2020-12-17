@@ -140,10 +140,16 @@ exports.deleteImage = (req, res) => {
           err.message || "Some error occurred while creating the SubCustomer.",
       });
     else res.send(data);
-    console.log("😀😅", req.body.file);
 
     fs.unlink(__basedir + "/uploads/" + req.body.file, function (err) {
-      if (err) throw err;
+      var ab = __basedir + "/uploads/" + req.body.file;
+      console.log("😀😅", ab);
+
+      if (err) {
+        console.log("vvv");
+      } else {
+        console.log("xcfgvb");
+      }
       // if no error, file has been deleted successfully
       console.log("File deleted!");
     });

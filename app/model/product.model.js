@@ -54,6 +54,38 @@ Product.getProductByKeyWord = (category, result) => {
     }
   );
 };
+Product.getProductByKeyMonth = (category, result) => {
+  sql.query(
+    "CALL GetAllProductsByKeyword(?,?)",
+    [category.SubCategoryID, category.YearMonth],
+    (err, res) => {
+      if (err) {
+        console.log("error.Model: ", err);
+        result(null, err);
+        return;
+      }
+      // console.log(query);
+      console.log("PRODUCT: ", res);
+      result(null, res[0]);
+    }
+  );
+};
+Product.GetProductsByMonthAndKeyword = (category, result) => {
+  sql.query(
+    "CALL GetProductsByMonthAndKeyword(?,?)",
+    [category.Keyword, category.YearMonth],
+    (err, res) => {
+      if (err) {
+        console.log("error.Model: ", err);
+        result(null, err);
+        return;
+      }
+      // console.log(query);
+      console.log("PRODUCT: ", res);
+      result(null, res[0]);
+    }
+  );
+};
 Product.getLatestProducts = (result) => {
   console.log("model-->");
   sql.query("CALL GetLatesProducts()", [], (err, res) => {

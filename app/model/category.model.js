@@ -94,7 +94,7 @@ Category.deleteImage = (newCategory, result) => {
       result(err, null);
       return;
     }
-
+    
     console.log("Delete  Category: ", { id: res.insertId, ...newCategory });
     result(null, { id: res.insertId, ...newCategory });
   });

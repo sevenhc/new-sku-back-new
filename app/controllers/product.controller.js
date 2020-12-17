@@ -184,6 +184,50 @@ exports.getProductByKeyWord = (req, res) => {
     else res.send(data);
   });
 };
+exports.getProductByMonth = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const category = new Product({
+    SubCategoryID: req.body.SubCategoryID,
+    YearMonth: req.body.YearMonth,
+  });
+
+  Product.getProductByKeyMonth(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
+exports.GetProductsByMonthAndKeyword = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+  }
+
+  const category = new Product({
+    Keyword: req.body.Keyword,
+    YearMonth: req.body.YearMonth,
+  });
+
+  Product.GetProductsByMonthAndKeyword(category, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the SubCustomer.",
+      });
+    else res.send(data);
+  });
+};
 
 exports.getLatestProducts = (req, res) => {
   console.log("😀__>");

@@ -9,8 +9,16 @@ module.exports = (app) => {
   app.get("/product/getAll/:SubCategoryID", product.getAllProductsByIds);
 
   app.get("/product/getById/:ProductID", product.getProductByID);
-  app.get("/product/getProductByKeyWord/:ProductName", product.getProductByKeyWord);
+  app.get(
+    "/product/getProductByKeyWord/:ProductName",
+    product.getProductByKeyWord
+  );
+  app.get("/product/getProductByMonth", product.getProductByMonth);
   app.get("/product/getLatest", product.getLatestProducts);
+  app.get(
+    "/product/GetProductsByMonthAndKeyword",
+    product.GetProductsByMonthAndKeyword
+  );
 
   //   // Retrieve a single Customer with customerId
   //   app.get("/customers/:customerId", customers.findOne);

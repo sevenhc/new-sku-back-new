@@ -118,7 +118,7 @@ SubCategory.delete = (newCategory, result) => {
   );
 };
 SubCategory.deleteImage = (newCategory, result) => {
-  console.log("mofl",newCategory.SubCategoryID)
+  console.log("mofl", newCategory.SubCategoryID);
   sql.query(
     "CALL DeleteSubCategoryImage(?)",
     [newCategory.SubCategoryID],
@@ -138,6 +138,22 @@ SubCategory.getSubById = (newCategory, result) => {
   sql.query(
     "CALL GetSubCategoryByID(?)",
     [newCategory.SubCategoryID],
+    (err, res) => {
+      if (err) {
+        console.log("error.Model: ", err);
+        result(null, err);
+        return;
+      }
+      // console.log(query);
+      console.log("SubCategories: ", res);
+      result(null, res[0]);
+    }
+  );
+};
+SubCategory.GetSubCategoriesByMonth = (newCategory, result) => {
+  sql.query(
+    "CALL GetSubCategoriesByMonth(?,?)",
+    [newCategory.CategoryID, newCategory.YearMonth],
     (err, res) => {
       if (err) {
         console.log("error.Model: ", err);

@@ -6,6 +6,10 @@ module.exports = (app) => {
 
   // Retrieve all Customers
   app.get("/subCategory/getAll/:CategoryID", subCategory.getAllSubCategory);
+  app.get(
+    "/subCategory/GetSubCategoriesByMonth",
+    subCategory.GetSubCategoriesByMonth
+  );
 
   //   // Retrieve a single Customer with customerId
   app.get("/subCategory/:SubCategoryID", subCategory.getSubCategoryByID);
@@ -18,7 +22,10 @@ module.exports = (app) => {
   //   // Delete a Customer with customerId
   app.delete("/subCategory/delete/:SubCategoryID", subCategory.delete);
 
-  app.delete("/subCategory/delete/image/:SubCategoryID", subCategory.deleteImage);
+  app.delete(
+    "/subCategory/delete/image/:SubCategoryID",
+    subCategory.deleteImage
+  );
 
   app.get(
     "/subCategory/GetSubCategoryByID/:SubCategoryID",
