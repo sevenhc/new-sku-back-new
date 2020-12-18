@@ -6,7 +6,7 @@ module.exports = (app) => {
 
   // Retrieve all Customers
   app.get("/subCategory/getAll/:CategoryID", subCategory.getAllSubCategory);
-  app.get(
+  app.post(
     "/subCategory/GetSubCategoriesByMonth",
     subCategory.GetSubCategoriesByMonth
   );

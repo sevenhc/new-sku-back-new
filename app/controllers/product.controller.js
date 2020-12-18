@@ -208,18 +208,14 @@ exports.getProductByMonth = (req, res) => {
 };
 exports.GetProductsByMonthAndKeyword = (req, res) => {
   // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-  }
-
+console.log("hello 😀")
   const category = new Product({
     Keyword: req.body.Keyword,
     YearMonth: req.body.YearMonth,
   });
 
   Product.GetProductsByMonthAndKeyword(category, (err, data) => {
+    console.log(category);
     if (err)
       res.status(500).send({
         message:

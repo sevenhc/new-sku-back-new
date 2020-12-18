@@ -71,6 +71,8 @@ Product.getProductByKeyMonth = (category, result) => {
   );
 };
 Product.GetProductsByMonthAndKeyword = (category, result) => {
+  console.log("hello4 😀");
+
   sql.query(
     "CALL GetProductsByMonthAndKeyword(?,?)",
     [category.Keyword, category.YearMonth],
@@ -80,7 +82,7 @@ Product.GetProductsByMonthAndKeyword = (category, result) => {
         result(null, err);
         return;
       }
-      // console.log(query);
+      console.log(query);
       console.log("PRODUCT: ", res);
       result(null, res[0]);
     }

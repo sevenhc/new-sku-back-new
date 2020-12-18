@@ -13,9 +13,9 @@ module.exports = (app) => {
     "/product/getProductByKeyWord/:ProductName",
     product.getProductByKeyWord
   );
-  app.get("/product/getProductByMonth", product.getProductByMonth);
+  app.post("/product/getProductByMonth", product.getProductByMonth);
   app.get("/product/getLatest", product.getLatestProducts);
-  app.get(
+  app.post(
     "/product/GetProductsByMonthAndKeyword",
     product.GetProductsByMonthAndKeyword
   );
