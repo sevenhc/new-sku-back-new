@@ -7,6 +7,7 @@ const SubCategory = function (category) {
   this.SubCategoryName = category.SubCategoryName;
   this.ThumbnailImage = category.ThumbnailImage;
   this.UserID = category.UserID;
+  this.YearMonth = category.YearMonth;
 };
 
 SubCategory.getAllSubCategory = (CategoryID, result) => {
