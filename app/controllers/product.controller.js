@@ -197,7 +197,7 @@ exports.getProductByMonth = (req, res) => {
     YearMonth: req.body.YearMonth,
   });
 
-  Product.getProductByKeyMonth(category, (err, data) => {
+  Product.getAllProductByMonth(category, (err, data) => {
     if (err)
       res.status(500).send({
         message:
