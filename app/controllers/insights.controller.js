@@ -115,8 +115,7 @@ exports.getInsById = (req, res) => {
   });
 };
 exports.GetLatesInsight = (req, res) => {
-
-  Insights.GetLatesInsight( (err, data) => {
+  Insights.GetLatesInsight((err, data) => {
     if (err)
       res.status(500).send({
         message:

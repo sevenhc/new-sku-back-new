@@ -12,6 +12,7 @@ const Product = function (category) {
   this.NutritionalTable = category.NutritionalTable;
   this.UserID = category.UserID;
   this.ProductID = category.ProductID;
+  this.Keyword = category.Keyword;
   this.YearMonth = category.YearMonth;
 };
 
@@ -72,18 +73,19 @@ Product.getAllProductByMonth = (category, result) => {
   );
 };
 Product.GetProductsByMonthAndKeyword = (category, result) => {
-  console.log("hello4 😀");
+  console.log("hello4 😀", category.Keyword, category.YearMonth);
 
   sql.query(
     "CALL GetProductsByMonthAndKeyword(?,?)",
     [category.Keyword, category.YearMonth],
     (err, res) => {
       if (err) {
+        console.log("err");
         console.log("error.Model: ", err);
         result(null, err);
         return;
       }
-      console.log(query);
+      console.log("query😷");
       console.log("PRODUCT: ", res);
       result(null, res[0]);
     }
