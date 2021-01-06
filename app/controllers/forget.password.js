@@ -1,11 +1,14 @@
 var nodemailer = require("nodemailer");
 exports.mail = (req, res) => {
-  const subject = "New-Sku Password Reset Request";
+  const subject = "NEWSKU PASSWORD CHANGE PASSWORD CHANGE";
   const email = req.params.email;
   const newDecryptedMail = Buffer.from(email).toString("base64");
 
   console.log("Enc-->", newDecryptedMail);
-  console.log("reversed-->", Buffer.from(newDecryptedMail, "base64").toString());
+  console.log(
+    "reversed-->",
+    Buffer.from(newDecryptedMail, "base64").toString()
+  );
   const link = "http://134.209.29.191/client/ResetPassword/" + newDecryptedMail;
   var transporter = nodemailer.createTransport({
     host: "smtp.123-reg.co.uk", // hostnamecls
@@ -40,10 +43,21 @@ exports.mail = (req, res) => {
           <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
         </head>
         <body>
-<p class="text-center">Please Update user password</p>
+<p class="text-center">Password reset email and subject:</p>
+<p class="text-center">---------------------------------</p>
+<br/><p class="text-center">Hi,<br/>
+
+We have received your request to reset your Newsku password. Just select the link below to create your new password.</p>
 <br/>
-        <div>You can change user password following link
-        <div>•link --> ${link}</div>
+${link}
+      <p>
+      Didn't request a password reset?<br/>
+If you didn't ask for a password reset please call us on 01709581433. Calls cost no more than calls to 01 and 02 numbers. If your phone tariff offers inclusive calls to landlines, calls to 03 numbers will be included on the same basis.
+      </p>
+      <p> The Newsku team</p>
+      <p>///////////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////////////</p>
         </body>
       </html>`,
   };
@@ -56,7 +70,9 @@ exports.mail = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving Exam_cancellation.",
+        message:
+          err.message ||
+          "Some error occurred while retrieving Exam_cancellation.",
       });
     });
 };
