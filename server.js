@@ -28,6 +28,7 @@ require("./app/routes/libraryItems.routes")(app);
 require("./app/routes/forgetPassword")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/subsciption.mail.routes")(app);
+require("./app/routes/password.chnaged.mail")(app);
 // set port, listen for requests
 // app.listen(3000, () => {
 //   console.log("Server is running on port 3000.");
