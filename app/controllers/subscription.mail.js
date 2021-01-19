@@ -1,6 +1,6 @@
 var nodemailer = require("nodemailer");
 exports.mail = (req, res) => {
-  const subject = "New-Sku User Subscription Configuration Mail";
+  const subject = "NewSku Subsciption";
   const email = req.params.email;
   const message = "Subscription successfully activated";
 
@@ -37,7 +37,11 @@ exports.mail = (req, res) => {
           <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
         </head>
         <body>
-        <div>Subscription successfully activated</div>
+        <p>Thank you for continuing your subscription with NewSku. Your new subscription end date is now < enter new date automatically > 
+
+        You will be notified 2 weeks prior to subscription ending </p>
+        <br/>
+        <p>The NewSku team </p>
         </body>
       </html>`,
   };

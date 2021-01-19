@@ -1,6 +1,6 @@
 var nodemailer = require("nodemailer");
 exports.mail = (req, res) => {
-  const subject = "NEWSKU PASSWORD CHANGE PASSWORD CHANGE";
+  const subject = "NEWSKU PASSWORD CHANGE";
   const email = req.params.email;
   const newDecryptedMail = Buffer.from(email).toString("base64");
 
@@ -43,21 +43,18 @@ exports.mail = (req, res) => {
           <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
         </head>
         <body>
-<p class="text-center">Password reset email and subject:</p>
-<p class="text-center">---------------------------------</p>
-<br/><p class="text-center">Hi,<br/>
+
+<br/><p class="">Hi,<br/>
 
 We have received your request to reset your Newsku password. Just select the link below to create your new password.</p>
 <br/>
-${link}
+<a href="${link}" target="_blank">Reset Password</a>
       <p>
       Didn't request a password reset?<br/>
 If you didn't ask for a password reset please call us on 01709581433. Calls cost no more than calls to 01 and 02 numbers. If your phone tariff offers inclusive calls to landlines, calls to 03 numbers will be included on the same basis.
       </p>
       <p> The Newsku team</p>
-      <p>///////////////////////////////////////////////////////////////////////////////////
-      ///////////////////////////////////////////////////////////////////////////////////
-      ///////////////////////////////////////////////////////////////////////////////////</p>
+    
         </body>
       </html>`,
   };
