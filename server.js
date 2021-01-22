@@ -29,9 +29,10 @@ require("./app/routes/forgetPassword")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/subsciption.mail.routes")(app);
 require("./app/routes/password.chnaged.mail")(app);
+require("./app/routes/contact.routes")(app);
 // set port, listen for requests
 // app.listen(3000, () => {
-//   console.log("Server is running on port 3000.");
+//   console.log("Server is running on port 3000.");git
 // });
 // app.listen(
 //   process.env.PORT || 3000,
