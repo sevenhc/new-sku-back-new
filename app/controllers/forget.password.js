@@ -9,7 +9,7 @@ exports.mail = (req, res) => {
     "reversed-->",
     Buffer.from(newDecryptedMail, "base64").toString()
   );
-  const link = "http://134.209.29.191/client/ResetPassword/" + newDecryptedMail;
+  const link = "https://www.newsku.co.uk/client/ResetPassword/" + newDecryptedMail;
   var transporter = nodemailer.createTransport({
     host: "smtp.123-reg.co.uk", // hostnamecls
     secureConnection: true, // use SSL
