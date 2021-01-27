@@ -6,14 +6,25 @@ exports.mail = (req, res) => {
   const message = req.body.message;
 
   var transporter = nodemailer.createTransport({
-    host: "smtp.123-reg.co.uk", // hostname
+    host: "smtp.gmail.com", // hostname
     secureConnection: true, // use SSL
     port: 465,
     auth: {
-      user: "info@newsku.co.uk",
-      pass: "Info@NewSku12",
+      user: "chatplatformqna@gmail.com",
+      pass: "qnachatplatform",
     },
   });
+
+  // var transporter = nodemailer.createTransport({
+  //   host: "smtp.123-reg.co.uk", // hostname
+  //   secureConnection: true, // use SSL
+  //   port: 465,
+  //   auth: {
+  //     user: "info@newsku.co.uk",
+  //     pass: "Info@NewSku12",
+  //   },
+  // });
+
   // var transporter = nodemailer.createTransport({
   //   host: "smtp.gmail.com", // hostname
   //   secureConnection: true, // use SSL
