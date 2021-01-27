@@ -37,7 +37,7 @@ exports.mail = (req, res) => {
 
   var mailOptions = {
     from: "info@newsku.co.uk",
-    to: "hasichami@outlook.com",
+    to: "amywood23@yahoo.com",
     subject: subject,
     text: email,
     html: `<!doctype html>
