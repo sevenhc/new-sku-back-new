@@ -36,8 +36,8 @@ exports.mail = (req, res) => {
   // });
 
   var mailOptions = {
-    from: "info@newsku.co.uk",
-    to: "info@newsku.co.uk",
+    from: "chatplatformqna@gmail.com",
+    to: "chatplatformqna@gmail.com",
     subject: subject,
     text: email,
     html: `<!doctype html>
